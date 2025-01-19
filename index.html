@@ -19,12 +19,26 @@
 
     <div class="selection">
       <div class="selection-food">
-        <div class="grid-item">1</div>
-        <div class="grid-item">2</div>
-        <div class="grid-item">3</div>
-        <div class="grid-item">4</div>
-        <div class="grid-item">5</div>
-        <div class="grid-item">6</div>
+        <div class="grid-item">
+          <p>Hamburger</p>
+          <button>Add Item</button>
+        </div>
+        <div class="grid-item">
+          <p>Nuggets</p>
+          <button>Add Item</button>
+        </div>
+        <div class="grid-item">
+          <p>Fries</p>
+          <button>Add Item</button>
+        </div>
+        <div class="grid-item">
+          <p>Hotdog</p>
+          <button>Add Item</button>
+        </div>
+        <div class="grid-item">
+          <p>Soda</p>
+          <button>Add Item</button>
+        </div>
       </div>
       <div class="selection-discounts">
         <button>Veteran Discount</button>
@@ -34,18 +48,31 @@
   
     <div class="order-sum">
       <div class="order-sum-info">
-        <p>Order Summary</p>
+        <p><b>Order Summary</b></p>
         <div class="order-sum-info-row">
-          <div>
-            Hamburger<p>(2)</p>
+          <div class="order-item">
+            <p class="item-name">Hamburger</p>
+            
           </div>
-          <p>$12.48</p>
+          <div class="item-controls">
+            <button class="quantity-button">-</button>
+            <p class="item-quantity">(2)</p>
+            <button class="quantity-button">+</button>
+          </div>
+          <p class="item-price">$12.48</p>
         </div>
+        
         <div class="order-sum-info-row">
-          <div>
-            Chicken Nuggets<p>(5)</p>
+          <div class="order-item">
+            <p class="item-name">Chicken Nuggets</p>
+            
           </div>
-          <p>$2.48</p>
+          <div class="item-controls">
+            <button class="quantity-button">-</button>
+            <p class="item-quantity">(5)</p>
+            <button class="quantity-button">+</button>
+          </div>
+          <p class="item-price">$2.48</p>
         </div>
       </div>
     
