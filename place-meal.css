@@ -17,6 +17,7 @@ body{
   background-color: var(--light-grey);
   max-width: 1400px;
   margin:0 auto;
+  font-family: Arial, sans-serif;
 }
 
 /* HEADER */
@@ -24,6 +25,7 @@ header{
   background-color: var(--dark-purple);
   color:white;
   padding:10px 10px;
+  border-radius: 0 0 10px 10px ;
 
   display:flex;
   justify-content: space-between;
@@ -34,10 +36,12 @@ header{
   border-radius: 10px;
   border-style: none;
   color:white;
+  padding:10px;
 }
 
 section{
   display:flex;
+  height:91vh;
 }
 
 /* SELECTION */
@@ -45,10 +49,30 @@ section{
   flex:2 1 auto;
 }
 
+.selection-food{
+  padding:10px;
+
+  display:grid;
+  grid-template-rows: repeat(2, 1fr); /* 2 rows of equal height */
+  grid-template-columns: repeat(3, 1fr); /* 3 columns of equal width */
+  gap: 50px; /* Space between grid items */
+  width: 100%; /* Set width of the grid container */
+
+}
+
+.grid-item{
+  border-radius: 10px;
+  height:150px;
+  background-color: white;
+}
 /* ORDER SUMMARY */
 .order-sum{
-  border-left: 1px solid var(--dark-grey);;
+  border-left: 2px solid var(--dark-grey);
+  padding:10px;
   height:100%;
 
   flex:.75 1 auto;
+  display:flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
