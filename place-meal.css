@@ -2,7 +2,7 @@
   --light-grey:#D5D2D6;
   --medium-grey:#BCB9BE;
   --dark-grey:#656363;
-  --purple:7F49A8;
+  --purple:#7F49A8;
   --dark-purple:#66358B;
   --green:#39932D;
 }
@@ -47,17 +47,28 @@ section{
 /* SELECTION */
 .selection{
   flex:2 1 auto;
+
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.selection-discounts button{
+  background-color: var(--dark-purple);
+  border-radius: 10px;
+  border-style: none;
+  color:white;
+  padding:10px;
 }
 
 .selection-food{
   padding:10px;
 
   display:grid;
-  grid-template-rows: repeat(2, 1fr); /* 2 rows of equal height */
-  grid-template-columns: repeat(3, 1fr); /* 3 columns of equal width */
-  gap: 50px; /* Space between grid items */
-  width: 100%; /* Set width of the grid container */
-
+  grid-template-rows: repeat(2, 1fr); /* 2 rows */
+  grid-template-columns: repeat(3, 1fr); /* 3 columnh */
+  gap: 50px; 
+  width: 100%; 
 }
 
 .grid-item{
@@ -66,13 +77,30 @@ section{
   background-color: white;
 }
 /* ORDER SUMMARY */
-.order-sum{
+.order-sum {
   border-left: 2px solid var(--dark-grey);
-  padding:10px;
-  height:100%;
+  padding: 10px;
+  flex: 0.75 1 auto;
+  display: flex;
+  flex-direction: column; 
+  justify-content: space-between; /
+}
 
-  flex:.75 1 auto;
-  display:flex;
-  justify-content: space-between;
+.order-sum-info {
+  flex: 1; 
+}
+
+.order-sum-bot {
+  display: flex;
   flex-direction: column;
+  gap: 10px; 
+  align-items: center; 
+}
+
+.order-sum-bot button{
+  background-color: var(--green);
+  border-radius: 10px;
+  border-style: none;
+  color:white;
+  padding:10px;
 }
