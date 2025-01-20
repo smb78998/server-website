@@ -18,26 +18,27 @@
   <section>
 
     <div class="selection">
-      <div class="selection-food">
+      <div class="selection-food js-selection-food">
         <div class="grid-item">
           <p>Hamburger</p>
-          <button>Add Item</button>
+          <p>190</p>
+          <button class="js-add-item">Add Item</button>
         </div>
         <div class="grid-item">
           <p>Nuggets</p>
-          <button>Add Item</button>
+          <button class="js-add-item">Add Item</button>
         </div>
         <div class="grid-item">
           <p>Fries</p>
-          <button>Add Item</button>
+          <button class="js-add-item">Add Item</button>
         </div>
         <div class="grid-item">
           <p>Hotdog</p>
-          <button>Add Item</button>
+          <button class="js-add-item">Add Item</button>
         </div>
         <div class="grid-item">
           <p>Soda</p>
-          <button>Add Item</button>
+          <button class="js-add-item">Add Item</button>
         </div>
       </div>
       <div class="selection-discounts">
@@ -47,19 +48,21 @@
     </div>
   
     <div class="order-sum">
+
       <div class="order-sum-info">
         <p><b>Order Summary</b></p>
         <div class="order-sum-info-row">
-          <div class="order-item">
-            <p class="item-name">Hamburger</p>
-            
-          </div>
+
+          <p class="item-name">Hamburger</p>
+
           <div class="item-controls">
-            <button class="quantity-button">-</button>
-            <p class="item-quantity">(2)</p>
-            <button class="quantity-button">+</button>
+            <button class="item-controls-button">-</button>
+            <p class="item-controls-quantity">(2)</p>
+            <button class="item-controls-button">+</button>
           </div>
+
           <p class="item-price">$12.48</p>
+
         </div>
         
         <div class="order-sum-info-row">
@@ -74,7 +77,20 @@
           </div>
           <p class="item-price">$2.48</p>
         </div>
-      </div>
+
+        <div class="order-sum-info-row">
+          <div class="order-item">
+            <p class="item-name">Tax(6%)</p>
+          </div>
+          <p class="item-price">10.00</p>
+        </div>
+
+        <div class="order-sum-info-row">
+          <div class="order-item">
+            <p class="item-name">Vetern Discount(1%)</p>
+          </div>
+          <p class="item-price">9.00</p>
+        </div>
     
       <div class="order-sum-bot">
         <p><b>Total: $23.34</b></p>
@@ -84,6 +100,8 @@
 
   </section>
 
-  
+  <script src="items.js"></script>
+  <script src="cart.js"></script>
+  <script src="place-meal.js"></script>
 </body>
 </html>
