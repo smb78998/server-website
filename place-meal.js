@@ -1,4 +1,29 @@
 let itemsHTML =''
+let cartHTML =''
+
+function updateCartDisplay (){
+  cartHTML='';
+    cart.forEach((cart)=>{
+      if(cart.quantity>0){
+        cartHTML +=`
+        <div class="order-sum-info-row">
+     
+               <p class="item-name">${cart.itemName}</p>
+     
+               <div class="item-controls">
+                 <button class="item-controls-button">-</button>
+                 <p class="item-controls-quantity">${cart.quantity}</p>
+                 <button class="item-controls-button ">+</button>
+               </div>
+     
+               <p class="item-price">${(((cart.itemPrice)*(cart.quantity))/100).toFixed(2)}</p>
+     
+             </div>
+       `
+      }
+    })
+    document.querySelector('.js-order-sum-info').innerHTML= cartHTML;
+}
 
 items.forEach((item)=>{
   itemsHTML +=`
@@ -20,7 +45,7 @@ document.querySelectorAll('.js-add-item').forEach((button) => {
 
     console.log("Added!");
     const itemName = button.dataset.itemName;
-   const itemPrice = button.dataset.itemPrice;
+    const itemPrice = button.dataset.itemPrice;
     console.log(button.dataset)
 
     let matchingItem;
@@ -40,32 +65,13 @@ document.querySelectorAll('.js-add-item').forEach((button) => {
         itemPrice:itemPrice
       })
     }
-   
-    console.log(cart);
+   updateCartDisplay();
 
   });
 });
 
-//attempt at the list on the side 
 
-let cartHTML =''
 
-cart.forEach((cart)=>{
-  cartHTML +=`
-   <div class="order-sum-info-row">
 
-          <p class="item-name">${cart.itemName}</p>
 
-          <div class="item-controls">
-            <button class="item-controls-button">-</button>
-            <p class="item-controls-quantity">${cart.quantity}</p>
-            <button class="item-controls-button">+</button>
-          </div>
 
-          <p class="item-price">${(cart.itemName)*cart.quantity}</p>
-
-        </div>
-  `
-})
-
-document.querySelector('.js-selection-food').innerHTML= itemsHTML;
