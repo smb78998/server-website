@@ -1,7 +1,7 @@
 const items = [
   {
     id:1,
-    name:'hamburger',
+    name:'Hamburger',
     price:'289'
   },
   {
@@ -21,7 +21,7 @@ const items = [
   },
   {
     id:5,
-    name:'soda',
+    name:'Soda',
     price:'450'
   },
 ]
