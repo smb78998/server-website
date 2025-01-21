@@ -7,7 +7,6 @@ let cartHTML = '';
 let discountSelected = null;
 let cartBottomHTML ='';
 let serverName = 'Bob William';
-
 let orders = JSON.parse(localStorage.getItem('orders')) || [];
 
 
@@ -169,10 +168,6 @@ function updateCartDisplay() {
 
             orders.push(orderObject);
           }
-         
-
-         
-
           //write orders into local memory 
           localStorage.setItem('orders',JSON.stringify(orders));
           console.log("storage");
