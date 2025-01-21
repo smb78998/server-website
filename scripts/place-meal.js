@@ -1,6 +1,6 @@
-import {cart} from './data/cart.js'
-import {items} from './data/items.js'
-import {discounts} from './data/discounts.js';
+import {cart} from '../data/cart.js'
+import {items} from '../data/items.js'
+import {discounts} from '../data/discounts.js';
 
 let itemsHTML = '';
 let cartHTML = '';
@@ -68,6 +68,7 @@ function updateCartDisplay() {
             </div>
             <p class="item-price">$${(discountAmount / 100).toFixed(2)}</p>
     `;
+    console.log(discountAmount);
   }else{
     document.querySelector('.js-discount').innerHTML = `
       <div class="order-item">
@@ -77,6 +78,7 @@ function updateCartDisplay() {
     `;
   }
 
+  console.log(discountAmount);
   //taxes
   const tax = .06;
   const taxAmount =total *tax;
@@ -129,10 +131,12 @@ function updateCartDisplay() {
           // Create a copy
           //if dont make deep copy, we have a pointer of array so this wont work out 
           const cartCopy = JSON.parse(JSON.stringify(cart));
+          const discountSelectedCopy = JSON.parse(JSON.stringify(discountSelected));
 
           const orderObject = {
             items: cartCopy, // Use the copied cart
-            discount: discountSelected,
+            discountSelected:discountSelected.name,
+            discountAmount: discountAmount,
             total: (total / 100).toFixed(2),
             serverName: serverName,
             time: new Date().toLocaleTimeString(), 
