@@ -9,6 +9,10 @@ let cartBottomHTML ='';
 let serverName = 'Bob William';
 let orders = [];
 
+function format(number){
+  return (number/100).toFixed(2);
+}
+
 
 //display for header
 function displayTime() {
@@ -84,6 +88,13 @@ function updateCartDisplay() {
   const taxAmount =total *tax;
   total +=taxAmount;
 
+
+ document.querySelector('.js-tax').innerHTML = `
+   <div class="order-item">
+          <p class="item-name">Tax(6%)</p>
+        </div>
+        <p class="item-price">$${format(taxAmount)}</p>
+  `;
 
   //display total here no matter 
   document.querySelector('.js-total').innerHTML = `
