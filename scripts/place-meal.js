@@ -7,7 +7,9 @@ let cartHTML = '';
 let discountSelected = null;
 let cartBottomHTML ='';
 let serverName = 'Bob William';
-let orders = [];
+
+let orders = JSON.parse(localStorage.getItem('orders')) || [];
+
 
 function format(number){
   return (number/100).toFixed(2);
@@ -49,7 +51,7 @@ function updateCartDisplay() {
             <p class="item-controls-quantity">${cartItem.quantity}</p>
             <button class="item-controls-button js-increment" data-item-name="${cartItem.itemName}">+</button>
           </div>
-          <p class="item-price">$${((itemTotal)/ 100).toFixed(2)}</p>
+          <p class="item-price">$${format(itemTotal)}</p>
         </div>
       `;
     }
@@ -70,7 +72,7 @@ function updateCartDisplay() {
       <div class="order-item">
               <p class="item-name">${discountSelected.name} Discount (${(discountSelected.price * 100).toFixed(0)}%) </p>
             </div>
-            <p class="item-price">$${(discountAmount / 100).toFixed(2)}</p>
+            <p class="item-price">$${format(discountAmount)}</p>
     `;
     console.log(discountAmount);
   }else{
@@ -99,7 +101,7 @@ function updateCartDisplay() {
   //display total here no matter 
   document.querySelector('.js-total').innerHTML = `
   <div class="order-sum-total js-total">
-    <p><b>Total: ${(total / 100).toFixed(2)}</b></p>
+    <p><b>Total: ${format(total)}</b></p>
     <button class="js-place-order">Place Order</button>
   </div>
   `;
@@ -142,18 +144,40 @@ function updateCartDisplay() {
           // Create a copy
           //if dont make deep copy, we have a pointer of array so this wont work out 
           const cartCopy = JSON.parse(JSON.stringify(cart));
-          const discountSelectedCopy = JSON.parse(JSON.stringify(discountSelected));
+          
 
-          const orderObject = {
-            items: cartCopy, // Use the copied cart
-            discountSelected:discountSelected.name,
-            discountAmount: discountAmount,
-            total: (total / 100).toFixed(2),
-            serverName: serverName,
-            time: new Date().toLocaleTimeString(), 
-          };
+          if(discountSelected ===null){
+            const orderObject = {
+              items: cartCopy, // Use the copied cart
+              discountSelected:'None',
+              discountAmount: 0,
+              total: format(total),
+              serverName: serverName,
+              time: new Date().toLocaleTimeString(), 
+            };
 
-          orders.push(orderObject);
+            orders.push(orderObject);
+          }else{
+            const orderObject = {
+              items: cartCopy, // Use the copied cart
+              discountSelected:discountSelected.name,
+              discountAmount: discountAmount,
+              total:  format(total),
+              serverName: serverName,
+              time: new Date().toLocaleTimeString(), 
+            };
+
+            orders.push(orderObject);
+          }
+         
+
+         
+
+          //write orders into local memory 
+          localStorage.setItem('orders',JSON.stringify(orders));
+          console.log("storage");
+          console.log(localStorage.getItem('orders'));
+
           resolve();
         });
       }
@@ -176,7 +200,7 @@ items.forEach((item) => {
   itemsHTML += `
     <div class="grid-item">
       <p>${item.name}</p>
-      <p>$${(item.price / 100).toFixed(2)}</p>
+      <p>$${format(item.price)}</p>
       <button class="js-add-item" data-item-name="${item.name}" data-item-price="${item.price}">Add Item</button>
     </div>
   `;
