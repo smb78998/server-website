@@ -1,15 +1,13 @@
-import {cart} from './cart.js'
-import {items} from './items.js'
+import { cart } from './cart.js';
+import { items } from './items.js';
+import { discounts } from './discounts.js';
 
 let itemsHTML = '';
 let cartHTML = '';
-discountSelected = null;
+let totalPrice = 0;
+let appliedDiscount = null; // Track the currently applied discount
 
-
-//update the cart display
 function updateCartDisplay() {
-
-  //if cart is not empty
   cartHTML = '';
   cart.forEach((cartItem) => {
     if (cartItem.quantity > 0) {
@@ -21,7 +19,7 @@ function updateCartDisplay() {
             <p class="item-controls-quantity">${cartItem.quantity}</p>
             <button class="item-controls-button js-increment" data-item-name="${cartItem.itemName}">+</button>
           </div>
-          <p class="item-price">$${((cartItem.itemPrice*cartItem.quantity)/ 100).toFixed(2)}</p>
+          <p class="item-price">$${((cartItem.itemPrice * cartItem.quantity) / 100).toFixed(2)}</p>
         </div>
       `;
     }
@@ -29,59 +27,27 @@ function updateCartDisplay() {
 
   document.querySelector('.js-order-sum-info').innerHTML = cartHTML;
 
-
-  cartBottomHTML ='';
-  //update bottom section of cart here 
-  //if discount has been selected
-  if(discountSelected){
-    //display discount selected 
-    document.querySelector('.js-discount').innerHTML = `
-      <div class="order-item">
-              <p class="item-name">Vetern Discount(1%)</p>
-            </div>
-            <p class="item-price">9.00</p>
-    `;
-  }else{
-    document.querySelector('.js-discount').innerHTML = `
-      <div class="order-item">
-              <p class="item-name">No Discount</p>
-            </div>
-            <p class="item-price">0.00</p>
-    `
-  }
-
-  //display total here no matter 
-
-
-
-
-
-
-
-  //+ button
+  // Add listeners for increment and decrement buttons
   document.querySelectorAll('.js-increment').forEach((button) => {
     button.addEventListener('click', () => {
       const itemName = button.dataset.itemName;
       const cartItem = cart.find((item) => item.itemName === itemName);
       if (cartItem) {
         cartItem.quantity += 1;
-        updateCartDisplay(); 
+        updateCartDisplay();
+        calcTotal();
       }
     });
   });
 
-  //- button
   document.querySelectorAll('.js-decrement').forEach((button) => {
     button.addEventListener('click', () => {
       const itemName = button.dataset.itemName;
       const cartItem = cart.find((item) => item.itemName === itemName);
-      if (cartItem) {
+      if (cartItem && cartItem.quantity > 0) {
         cartItem.quantity -= 1;
-        // if (cartItem.quantity === 0) {
-        //   const index = cart.indexOf(cartItem);
-        //   cart.splice(index, 1); 
-        // }
-        updateCartDisplay(); 
+        updateCartDisplay();
+        calcTotal();
       }
     });
   });
@@ -90,8 +56,48 @@ function updateCartDisplay() {
 
 
 
+function calcTotal() {
+  totalPrice = cart.reduce((sum, cartItem) => sum + cartItem.itemPrice * cartItem.quantity, 0);
 
-// Generate food items
+  // Apply discount if one is selected
+  if (appliedDiscount) {
+    const discountAmount = totalPrice * appliedDiscount.percentage;
+    totalPrice -= discountAmount;
+    document.querySelector('.js-discount-info').innerText = `${appliedDiscount.name} applied: -$${(discountAmount / 100).toFixed(2)}`;
+  } else {
+    document.querySelector('.js-discount-info').innerText = 'No discount applied.';
+  }
+
+  // Add tax (6%)
+  const tax = totalPrice * 0.06;
+  totalPrice += tax;
+
+  // Update total display
+  document.querySelector('.js-total-price').innerText = `Total: $${(totalPrice / 100).toFixed(2)}`;
+}
+
+
+
+
+
+
+function setupDiscountButtons() {
+  const discountButtons = document.querySelectorAll('.selection-discounts button');
+  discountButtons.forEach((button, index) => {
+    button.addEventListener('click', () => {
+      appliedDiscount = discounts[index]; // Apply the corresponding discount
+      calcTotal(); // Recalculate the total with the discount
+    });
+  });
+}
+
+
+
+
+
+
+
+// Generate food items HTML
 items.forEach((item) => {
   itemsHTML += `
     <div class="grid-item">
@@ -121,10 +127,9 @@ document.querySelectorAll('.js-add-item').forEach((button) => {
       });
     }
     updateCartDisplay();
+    calcTotal();
   });
 });
 
-//totaling everything together
-//add everything in cart 
-//first apply discounts then apply tax
-//only one discount can be applied at a time 
+// Initialize the app
+setupDiscountButtons();

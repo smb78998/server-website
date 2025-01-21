@@ -186,14 +186,14 @@ background-color: var(--dark-purple);
 
 
 
-.order-sum-bot {
+.order-sum-total {
   display: flex;
   flex-direction: column;
   gap: 10px; 
   align-items: center; 
 }
 
-.order-sum-bot button{
+.order-sum-total button{
   background-color: var(--green);
   border-radius: 10px;
   border-style: none;
@@ -203,6 +203,6 @@ background-color: var(--dark-purple);
   transition:  0.3s ease; 
 }
 
-.order-sum-bot button:hover {
+.order-sum-total button:hover {
   background-color: var(--dark-green); 
 } 
