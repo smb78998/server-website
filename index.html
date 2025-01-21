@@ -8,10 +8,11 @@
 </head>
 <body>
   <header>
-    <button class="header-button">View Order History</button>
-    <div class="header-info">
-      <p class="heder-info-time">11:49pm</p>
-      <p class="heder-info-name">Bob William</p>
+    <a href="allOrders.html"><button class="header-button">View Order History</button></a>
+    <h2>Place Order</h2>
+    <div class="header-info js-header-info">
+      <p class="heder-info-time"></p>
+      <p class="heder-info-name"></p>
     </div>
   </header>
 
@@ -21,8 +22,8 @@
       <div class="selection-food js-selection-food">
         </div>
       <div class="selection-discounts">
-        <button>Veteran Discount</button>
-        <button>Student Discount</button>
+        <button class="js-selection-discounts">Veteran Discount</button>
+        <button class="js-selection-discounts">Student Discount</button>
       </div>
     </div>
   
@@ -37,22 +38,30 @@
       <div class="js-order-sum-bot">
         <div class="order-sum-info-row">
           <div class="order-item">
+            <p class="item-name">Total No tax</p>
+          </div>
+          <p class="item-price">0.00</p>
+        </div>
+
+      <div class="js-order-sum-bot">
+        <div class="order-sum-info-row">
+          <div class="order-item">
             <p class="item-name">Tax(6%)</p>
           </div>
-          <p class="item-price">10.00</p>
+          <p class="item-price">0.00</p>
         </div>
   
-        <!-- <div class="order-sum-info-row js-discount">
+        <div class="order-sum-info-row js-discount">
           <div class="order-item">
-            <p class="item-name">Vetern Discount(1%)</p>
+            <p class="item-name">No Discount Selected</p>
           </div>
-          <p class="item-price">9.00</p>
+          <p class="item-price">$0.00</p>
         </div>
     
         <div class="order-sum-total js-total">
-          <p><b>Total: $23.34</b></p>
+          <p><b>Total: $00.00</b></p>
           <button>Place Order</button>
-        </div> -->
+        </div>
       </div>
 
       
