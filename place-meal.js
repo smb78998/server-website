@@ -3,7 +3,8 @@ import {items} from './items.js'
 
 let itemsHTML = '';
 let cartHTML = '';
-discountSelected = null;
+let discountSelected = null;
+let cartBottomHTML ='';
 
 
 //update the cart display
@@ -30,7 +31,7 @@ function updateCartDisplay() {
   document.querySelector('.js-order-sum-info').innerHTML = cartHTML;
 
 
-  cartBottomHTML ='';
+  
   //update bottom section of cart here 
   //if discount has been selected
   if(discountSelected){
@@ -44,14 +45,19 @@ function updateCartDisplay() {
   }else{
     document.querySelector('.js-discount').innerHTML = `
       <div class="order-item">
-              <p class="item-name">No Discount</p>
+              <p class="item-name">No Discount Selected</p>
             </div>
-            <p class="item-price">0.00</p>
-    `
+            <p class="item-price">9.00</p>
+    `;
   }
 
   //display total here no matter 
-
+  document.querySelector('.js-total').innerHTML = `
+  <div class="order-sum-total js-total">
+    <p><b>Total: $00.00</b></p>
+    <button>Place Order</button>
+  </div>
+  `;
 
 
 
