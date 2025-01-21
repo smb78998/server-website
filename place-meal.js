@@ -1,6 +1,6 @@
-import {cart} from './cart.js'
-import {items} from './items.js'
-import {discounts} from './discounts.js';
+import {cart} from './data/cart.js'
+import {items} from './data/items.js'
+import {discounts} from './data/discounts.js';
 
 let itemsHTML = '';
 let cartHTML = '';
@@ -10,7 +10,7 @@ let serverName = 'Bob William';
 let orders = [];
 
 
-
+//display for header
 function displayTime() {
   const now = new Date();
   let timeString = now.toLocaleTimeString();
@@ -23,7 +23,7 @@ function displayTime() {
   `
 }
 
-setInterval(displayTime, 1000); // Update every second
+setInterval(displayTime, 1000); 
 
 
 //update the cart display
@@ -126,7 +126,7 @@ function updateCartDisplay() {
         return new Promise((resolve, reject) => {
           console.log(cart);
 
-          // Create a deep copy of the cart
+          // Create a copy
           //if dont make deep copy, we have a pointer of array so this wont work out 
           const cartCopy = JSON.parse(JSON.stringify(cart));
 
@@ -147,15 +147,12 @@ function updateCartDisplay() {
         .then(() => {
           console.log('Order Placed:', orders);
           alert('Order placed!');
-          cart.length = 0; // Clear the cart
-          discountSelected = null; // Reset discount
+          cart.length = 0; 
+          discountSelected = null; 
           updateCartDisplay();
         });
     });
 }
-
- 
-
 
 
 
