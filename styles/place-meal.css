@@ -206,3 +206,41 @@ background-color: var(--dark-purple);
 .order-sum-total button:hover {
   background-color: var(--dark-green); 
 } 
+
+/*ALL ORDERS---------------------------------*/
+section{
+  display: flex;
+  flex-wrap: wrap;
+  
+
+  padding:20px;
+}
+
+.order{
+  width:350px;
+  min-height: 450px;
+  max-height: 450px;
+  margin:20px;
+
+  border: 2px #656363 solid;
+
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+}
+
+.orders-header{
+display: flex;
+justify-content: space-between;
+
+margin-bottom: 10px;
+}
+
+.orders-top-items{
+  display:flex;
+  justify-content: space-between;
+
+  margin:10px;
+  border-bottom: #65636359 1px solid;
+}

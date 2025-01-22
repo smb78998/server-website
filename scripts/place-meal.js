@@ -8,6 +8,7 @@ let discountSelected = null;
 let cartBottomHTML ='';
 let serverName = 'Bob William';
 let orders = JSON.parse(localStorage.getItem('orders')) || [];
+let atleastOneItem = 0;
 
 
 function format(number){
@@ -135,56 +136,64 @@ function updateCartDisplay() {
   });
 
    // Place order button
+   
     document.querySelector('.js-place-order').addEventListener('click', () => {
-      function doSomethingFirst() {
-        return new Promise((resolve, reject) => {
-          console.log(cart);
-
-          // Create a copy
-          //if dont make deep copy, we have a pointer of array so this wont work out 
-          const cartCopy = JSON.parse(JSON.stringify(cart));
-          
-
-          if(discountSelected ===null){
-            const orderObject = {
-              items: cartCopy, // Use the copied cart
-              discountSelected:'None',
-              discountAmount: 0,
-              total: format(total),
-              serverName: serverName,
-              time: new Date().toLocaleTimeString(), 
-            };
-
-            orders.push(orderObject);
-          }else{
-            const orderObject = {
-              items: cartCopy, // Use the copied cart
-              discountSelected:discountSelected.name,
-              discountAmount: discountAmount,
-              total:  format(total),
-              serverName: serverName,
-              time: new Date().toLocaleTimeString(), 
-            };
-
-            orders.push(orderObject);
-          }
-          //write orders into local memory 
-          localStorage.setItem('orders',JSON.stringify(orders));
-          console.log("storage");
-          console.log(localStorage.getItem('orders'));
-
-          resolve();
-        });
+      if(cart.length ===0){
+        alert('Please select alteast ONE item!');
+      }else{
+        function doSomethingFirst() {
+          return new Promise((resolve, reject) => {
+            console.log(cart);
+  
+            // Create a copy
+            //if dont make deep copy, we have a pointer of array so this wont work out 
+            const cartCopy = JSON.parse(JSON.stringify(cart));
+            
+  
+            if(discountSelected ===null){
+              const orderObject = {
+                items: cartCopy, // Use the copied cart
+                discountSelected:'None',
+                discountAmount: 0,
+                total: format(total),
+                serverName: serverName,
+                time: new Date().toLocaleTimeString(), 
+                date: new Date().toLocaleDateString(),
+              };
+  
+              orders.push(orderObject);
+            }else{
+              const orderObject = {
+                items: cartCopy, // Use the copied cart
+                discountSelected:discountSelected.name,
+                discountAmount: discountAmount,
+                total:  format(total),
+                serverName: serverName,
+                time: new Date().toLocaleTimeString(), 
+                date: new Date().toLocaleDateString(),
+              };
+  
+              orders.push(orderObject);
+            }
+            //write orders into local memory 
+            localStorage.setItem('orders',JSON.stringify(orders));
+            console.log("storage");
+            console.log(localStorage.getItem('orders'));
+  
+            resolve();
+          });
+        }
+        
+        doSomethingFirst()
+          .then(() => {
+            console.log('Order Placed:', orders);
+            alert('Order placed!');
+            cart.length = 0; 
+            discountSelected = null; 
+            updateCartDisplay();
+          });
       }
-      
-      doSomethingFirst()
-        .then(() => {
-          console.log('Order Placed:', orders);
-          alert('Order placed!');
-          cart.length = 0; 
-          discountSelected = null; 
-          updateCartDisplay();
-        });
+
     });
 }
 
