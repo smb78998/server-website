@@ -208,6 +208,20 @@ background-color: var(--dark-purple);
 } 
 
 /*ALL ORDERS---------------------------------*/
+.header-order-button{
+  background-color: rgb(194, 17, 17);
+  border-radius: 10px;
+  border-style: none;
+  color:white;
+  padding:10px;
+  cursor: pointer;
+  transition:  0.3s ease; 
+}
+
+.header-order-button:hover {
+  background-color: rgb(143, 11, 11); 
+} 
+
 section{
   display: flex;
   flex-wrap: wrap;

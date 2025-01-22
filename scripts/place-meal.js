@@ -1,13 +1,14 @@
 import {cart} from '../data/cart.js'
 import {items} from '../data/items.js'
 import {discounts} from '../data/discounts.js';
+import {orders} from '../data/orders.js';
 
 let itemsHTML = '';
 let cartHTML = '';
 let discountSelected = null;
 let cartBottomHTML ='';
 let serverName = 'Bob William';
-let orders = JSON.parse(localStorage.getItem('orders')) || [];
+
 let atleastOneItem = 0;
 
 
@@ -155,6 +156,7 @@ function updateCartDisplay() {
                 items: cartCopy, // Use the copied cart
                 discountSelected:'None',
                 discountAmount: 0,
+                taxAmount:taxAmount,
                 total: format(total),
                 serverName: serverName,
                 time: new Date().toLocaleTimeString(), 
@@ -167,6 +169,7 @@ function updateCartDisplay() {
                 items: cartCopy, // Use the copied cart
                 discountSelected:discountSelected.name,
                 discountAmount: discountAmount,
+                taxAmount:taxAmount,
                 total:  format(total),
                 serverName: serverName,
                 time: new Date().toLocaleTimeString(), 

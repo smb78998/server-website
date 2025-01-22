@@ -1,1 +1,1 @@
-let orders = JSON.parse(localStorage.getItem('orders')) || [];
+export const orders = JSON.parse(localStorage.getItem('orders')) || [];

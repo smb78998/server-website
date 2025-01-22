@@ -8,7 +8,15 @@
 </head>
 <body>
   <header>
-    <a href="index.html"><button class="header-button">Place Order</button></a>
+    <div>
+      <a href="index.html"><button class="header-button">Place Order</button></a>
+      <button class="header-order-button" onclick="localStorage.clear(); alert('All Orders Cleared!');
+      location.reload();
+      ">Clear Orders</button>
+    </div>
+   
+
+
     <h2>Order History</h2>
     <div class="header-info js-header-info">
       <p class="heder-info-time"></p>
@@ -158,7 +166,7 @@
     </section>
  
 
-  <script type="module" src="place-meal.js"></script>
+  <script type="module" src="scripts/allOrders.js"></script>
   <script>
     console.log( localStorage.getItem('orders'));
   </script>

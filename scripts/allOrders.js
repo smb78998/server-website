@@ -1,6 +1,21 @@
 import {orders} from '../data/orders.js';
-  
-  orders.forEach((order) => {
+console.log(orders);
+
+let allOrdersHTML = '';
+let itemsHTML = '';
+
+
+orders.forEach((order) => {
+
+order.items.forEach((item) => {
+  itemsHTML += `
+    <div class="orders-top-items">
+      <p>${item.itemName}</p>
+      <p>${item.quantity}</p>
+      <p>${item.itemPrice}</p>
+    </div>
+  `;
+});
     
       allOrdersHTML += `
       <div class="order">
@@ -15,53 +30,31 @@ import {orders} from '../data/orders.js';
         </div>
         
          <div class="js-generate-items">
-          <div class="orders-top-items">
-            <p>Hotdog</p>
-            <p>2</p>
-            <p>2.00</p>
-          </div>
+          <p>${itemsHTML}<p>
   
-          <div class="orders-top-items">
-            <p>Waffle</p>
-            <p>2</p>
-            <p>2.00</p>
-          </div>
-  
-          <div class="orders-top-items">
-            <p>Hamburger</p>
-            <p>2</p>
-            <p>2.00</p>
-          </div>
         </div>
         
       </div>
 
       <div>
-        <div class="js-order-sum-bot">
-          <div class="order-sum-info-row">
-            <div class="order-item">
-              <p class="item-name">Total No tax</p>
-            </div>
-            <p class="item-price">0.00</p>
-          </div>
   
         <div class="js-order-sum-bot">
           <div class="order-sum-info-row">
             <div class="order-item">
               <p class="item-name">Tax(6%)</p>
             </div>
-            <p class="item-price">0.00</p>
+            <p class="item-price">${order.taxAmount}</p>
           </div>
     
           <div class="order-sum-info-row js-discount">
             <div class="order-item">
-              <p class="item-name">No Discount Selected</p>
+              <p class="item-name">${orders.discountSelected || 'No Discount Selected'}</p>
             </div>
-            <p class="item-price">$0.00</p>
+            <p class="item-price">${orders.discountAmount || '0.00'}</p>
           </div>
       
           <div class="order-sum-total js-total">
-            <p><b>Total: $00.00</b></p>
+            <p><b>Total: $${order.total}</b></p>
           </div>
 
         </div>
@@ -72,4 +65,4 @@ import {orders} from '../data/orders.js';
     
   });
 
-  document.querySelector('js-allOrders').innerHTML = allOrdersHTML;
+  document.querySelector('.js-allOrders').innerHTML = allOrdersHTML;
