@@ -1,6 +1,10 @@
 import {orders} from '../data/orders.js';
-console.log(orders);
+import {format} from '../scripts/format.js'
+import { displayTime } from './header.js';
 
+setInterval(displayTime, 1000); 
+
+console.log(orders);
 let allOrdersHTML = '';
 let itemsHTML = '';
 
@@ -13,11 +17,11 @@ order.items.forEach((item) => {
     <div class="orders-top-items">
       <p>${item.itemName}</p>
       <p>${item.quantity}</p>
-      <p>${item.itemPrice}</p>
+      <p>$${format(item.itemPrice)}</p>
     </div>
   `;
 });
-    
+    console.log(orders.discountSelected)
       allOrdersHTML += `
       <div class="order">
       <div class="oder-top">
@@ -44,14 +48,14 @@ order.items.forEach((item) => {
             <div class="order-item">
               <p class="item-name">Tax(6%)</p>
             </div>
-            <p class="item-price">${order.taxAmount}</p>
+            <p class="item-price">$${format(order.taxAmount)}</p>
           </div>
     
           <div class="order-sum-info-row js-discount">
             <div class="order-item">
-              <p class="item-name">${orders.discountSelected || 'No Discount Selected'}</p>
+              <p class="item-name">${order.discountSelected || 'No Discount Selected'}</p>
             </div>
-            <p class="item-price">${orders.discountAmount || '0.00'}</p>
+            <p class="item-price">$${format(order.discountAmount) || '0.00'}</p>
           </div>
       
           <div class="order-sum-total js-total">

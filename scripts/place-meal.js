@@ -2,33 +2,15 @@ import {cart} from '../data/cart.js'
 import {items} from '../data/items.js'
 import {discounts} from '../data/discounts.js';
 import {orders} from '../data/orders.js';
+import {format} from '../scripts/format.js'
+import { displayTime } from './header.js';
 
 let itemsHTML = '';
 let cartHTML = '';
 let discountSelected = null;
 let cartBottomHTML ='';
-let serverName = 'Bob William';
-
 let atleastOneItem = 0;
 
-
-function format(number){
-  return (number/100).toFixed(2);
-}
-
-
-//display for header
-function displayTime() {
-  const now = new Date();
-  let timeString = now.toLocaleTimeString();
-
-  document.querySelector('.js-header-info').innerHTML = `
-  <div class="header-info">
-      <p class="heder-info-time">${timeString}</p>
-      <p class="heder-info-name">${serverName}</p>
-    </div>
-  `
-}
 
 setInterval(displayTime, 1000); 
 
