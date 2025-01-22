@@ -10,9 +10,9 @@ let itemsHTML = '';
 
 
 orders.forEach((order) => {
-
+  itemsHTML = '';
 order.items.forEach((item) => {
-   itemsHTML = '';
+  
   itemsHTML += `
     <div class="orders-top-items">
       <p>${item.itemName}</p>
