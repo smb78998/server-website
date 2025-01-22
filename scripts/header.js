@@ -1,5 +1,5 @@
 //display for header
-let serverName = 'Bob William';
+export let serverName = 'Bob William';
 
 export const displayTime= function displayTime() {
   const now = new Date();

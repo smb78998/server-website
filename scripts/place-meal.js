@@ -1,9 +1,11 @@
+//imports
 import {cart} from '../data/cart.js'
 import {items} from '../data/items.js'
 import {discounts} from '../data/discounts.js';
 import {orders} from '../data/orders.js';
 import {format} from '../scripts/format.js'
 import { displayTime } from './header.js';
+import { serverName } from './header.js';
 
 let itemsHTML = '';
 let cartHTML = '';
@@ -11,9 +13,11 @@ let discountSelected = null;
 let cartBottomHTML ='';
 let atleastOneItem = 0;
 
+//constants
+const TAX_RATE=.06;
 
+//display header with name and time
 setInterval(displayTime, 1000); 
-
 
 //update the cart display
 function updateCartDisplay() {
@@ -135,7 +139,7 @@ function updateCartDisplay() {
   
             if(discountSelected ===null){
               const orderObject = {
-                items: cartCopy, // Use the copied cart
+                items: cartCopy, 
                 discountSelected:'None',
                 discountAmount: 0,
                 taxAmount:taxAmount,
@@ -148,7 +152,7 @@ function updateCartDisplay() {
               orders.push(orderObject);
             }else{
               const orderObject = {
-                items: cartCopy, // Use the copied cart
+                items: cartCopy, 
                 discountSelected:discountSelected.name,
                 discountAmount: discountAmount,
                 taxAmount:taxAmount,
@@ -216,11 +220,6 @@ document.querySelectorAll('.js-add-item').forEach((button) => {
     updateCartDisplay();
   });
 });
-
-//totaling everything together
-//add everything in cart 
-//first apply discounts then apply tax
-//only one discount can be applied at a time 
 
 // Set up discount buttons
 document.querySelectorAll('.js-selection-discounts').forEach((button, index) => {
