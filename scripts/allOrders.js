@@ -8,6 +8,7 @@ let itemsHTML = '';
 orders.forEach((order) => {
 
 order.items.forEach((item) => {
+   itemsHTML = '';
   itemsHTML += `
     <div class="orders-top-items">
       <p>${item.itemName}</p>
