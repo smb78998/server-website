@@ -2,6 +2,7 @@ import {orders} from '../data/orders.js';
 import {format} from '../scripts/format.js'
 import { displayTime } from './header.js';
 
+//display name and time in header
 setInterval(displayTime, 1000); 
 
 console.log(orders);

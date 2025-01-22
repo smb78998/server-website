@@ -20,29 +20,8 @@ setInterval(displayTime, 1000);
 //update the cart display
 function updateCartDisplay() {
 
-  //if cart is not empty
-  cartHTML = '';
   let total=0;
-
-  cart.forEach((cartItem) => {
-    if (cartItem.quantity > 0) {
-      const itemTotal = cartItem.itemPrice * cartItem.quantity;
-      total+=itemTotal;
-      cartHTML += `
-        <div class="order-sum-info-row">
-          <p class="item-name">${cartItem.itemName}</p>
-          <div class="item-controls">
-            <button class="item-controls-button js-decrement" data-item-name="${cartItem.itemName}">-</button>
-            <p class="item-controls-quantity">${cartItem.quantity}</p>
-            <button class="item-controls-button js-increment" data-item-name="${cartItem.itemName}">+</button>
-          </div>
-          <p class="item-price">$${format(itemTotal)}</p>
-        </div>
-      `;
-    }
-  });
-
-  document.querySelector('.js-order-sum-info').innerHTML = cartHTML;
+  total=updateCartContents(cart,total);
 
   //taxes
   const tax = .06;
@@ -56,12 +35,13 @@ function updateCartDisplay() {
   total = total - discountAmount;
 
 
-   // Place order button
+    
     updateBottomCart(total,taxAmount,discountAmount);
     placeOrderButtonListener(total, discountAmount, taxAmount);
     cartButtonsListeners();
 }
 
+//Functions associated with updating whole cart section
 function cartButtonsListeners(){
   //+ button
   document.querySelectorAll('.js-increment').forEach((button) => {
@@ -191,6 +171,33 @@ function updateBottomCart(total,taxAmount,discountAmount){
     <button class="js-place-order">Place Order</button>
   </div>
   `;
+}
+
+function updateCartContents(cart,total){
+    //if cart is not empty
+    cartHTML = '';
+  
+
+    cart.forEach((cartItem) => {
+      if (cartItem.quantity > 0) {
+        const itemTotal = cartItem.itemPrice * cartItem.quantity;
+        total+=itemTotal;
+        cartHTML += `
+          <div class="order-sum-info-row">
+            <p class="item-name">${cartItem.itemName}</p>
+            <div class="item-controls">
+              <button class="item-controls-button js-decrement" data-item-name="${cartItem.itemName}">-</button>
+              <p class="item-controls-quantity">${cartItem.quantity}</p>
+              <button class="item-controls-button js-increment" data-item-name="${cartItem.itemName}">+</button>
+            </div>
+            <p class="item-price">$${format(itemTotal)}</p>
+          </div>
+        `;
+      }
+    });
+  
+    document.querySelector('.js-order-sum-info').innerHTML = cartHTML;
+    return total;
 }
 
 // Generate food items
