@@ -54,7 +54,7 @@ order.items.forEach((item) => {
     
           <div class="order-sum-info-row js-discount">
             <div class="order-item">
-              <p class="item-name">${order.discountSelected || 'No Discount Selected'}</p>
+              <p class="item-name">Discount: ${ order.discountSelected || 'No Discount Selected'}</p>
             </div>
             <p class="item-price">$${format(order.discountAmount) || '0.00'}</p>
           </div>
